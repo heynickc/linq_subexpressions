@@ -7,7 +7,7 @@
 // Do not make changes directly to this file - edit the template instead.
 // 
 // The following connection settings were used to generate this file:
-//     Configuration file:     "Linq.Subexpressions\App.config"
+//     Configuration file:     "LinqSubexpressions\App.config"
 //     Connection String Name: "AdventureWorks"
 //     Connection String:      "Data Source=BSBZGV1\MSSQLSERVER2012;Initial Catalog=AdventureWorksLT2012;Integrated Security=True;"
 // ------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ using System.Data.Entity.ModelConfiguration;
 using System.Threading;
 using DatabaseGeneratedOption = System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption;
 
-namespace Linq.Subexpressions
+namespace LinqSubexpressions.DAL
 {
     // ************************************************************************
     // Unit of work
