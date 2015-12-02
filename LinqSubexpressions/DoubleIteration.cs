@@ -15,10 +15,12 @@ namespace LinqSubexpressions {
         public void Iterate_results_twice() {
             using (var db = new MyDbContext()) {
                 var results = db.SalesOrderDetails
+                    .Where(sod => sod.SalesOrderId == 43659)
+                    .ToList()
                     .Select(sod => new {
                         sod.OrderQty,
                         sod.UnitPrice,
-                        ExtendedPrice = sod.OrderQty*sod.UnitPrice
+                        ExtendedPrice = GetExtendedPrice(sod.OrderQty,  sod.UnitPrice)
                     }).ToList();
 
                 _output.WriteLine(results.ToJson());
