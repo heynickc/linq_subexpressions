@@ -248,8 +248,7 @@ namespace LinqSubexpressions {
                                     lineTotal,
                                     _calcMarginCounter)
                             };
-                        }
-                        ).ToList();
+                        }).ToList();
 
                     _calcLinePriceCounter.Write();
                     _calcLineCostCounter.Write();
@@ -279,7 +278,7 @@ namespace LinqSubexpressions {
                 };
                 db.Products.Add(products);
 
-                using (Log.Logger.BeginTimedOperation("Calculating margin with second iteration", "Test")) {
+                using (Log.Logger.BeginTimedOperation("Calculating margin with subexpression", "Test")) {
                     _calcLinePriceCounter.Reset();
                     _calcLineCostCounter.Reset();
                     _calcMarginCounter.Reset();
@@ -302,8 +301,8 @@ namespace LinqSubexpressions {
                                     _calcLineCostCounter),
                                 li
                             })
-                        .Select(lineItem => {
-                            return new {
+                        .Select(lineItem =>
+                            new {
                                 lineItem.li.sod.OrderQty,
                                 lineItem.li.sod.UnitPrice,
                                 lineItem.li.product.StandardCost,
@@ -313,8 +312,7 @@ namespace LinqSubexpressions {
                                     lineItem.lineCost,
                                     lineItem.lineTotal,
                                     _calcMarginCounter)
-                            };
-                        }).ToList();
+                            }).ToList();
 
                     _calcLinePriceCounter.Write();
                     _calcLineCostCounter.Write();
@@ -355,14 +353,14 @@ namespace LinqSubexpressions {
                               where sod.SalesOrderId == 71774
                               join product in db.Products on sod.ProductId equals product.ProductId
                               select new { sod, product }).ToList()
-                            let lineTotal = CalculateLinePrice(
-                                li.sod.OrderQty,
-                                li.sod.UnitPrice,
-                                _calcLinePriceCounter)
-                            let lineCost = CalculateLineCost(
-                                li.sod.OrderQty,
-                                li.product.StandardCost,
-                                _calcLineCostCounter)
+                         let lineTotal = CalculateLinePrice(
+                             li.sod.OrderQty,
+                             li.sod.UnitPrice,
+                             _calcLinePriceCounter)
+                         let lineCost = CalculateLineCost(
+                             li.sod.OrderQty,
+                             li.product.StandardCost,
+                             _calcLineCostCounter)
                          select new {
                              li.sod.OrderQty,
                              li.sod.UnitPrice,
