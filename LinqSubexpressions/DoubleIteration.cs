@@ -288,7 +288,7 @@ namespace LinqSubexpressions {
                             sod => sod.ProductId,
                             product => product.ProductId,
                             (sod, product) => new { sod, product })
-                        .ToList()
+                        //.ToList()
                         .Select(li =>
                             new {
                                 lineTotal = CalculateLinePrice(
@@ -352,7 +352,7 @@ namespace LinqSubexpressions {
                              (from sod in db.SalesOrderDetails
                               where sod.SalesOrderId == 71774
                               join product in db.Products on sod.ProductId equals product.ProductId
-                              select new { sod, product }).ToList()
+                              select new { sod, product })
                          let lineTotal = CalculateLinePrice(
                              li.sod.OrderQty,
                              li.sod.UnitPrice,
